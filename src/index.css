@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #05060a;
+    color: #eef1f7;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Cairo', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    background-image: linear-gradient(90deg, #ff2d55, #ffb020, #39ff88, #2de2ff, #7c8cff, #ff2d55);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rgb-flow 6s linear infinite;
+  }
+}
+
+@layer components {
+  .rgb-text {
+    background-image: linear-gradient(90deg, #ff2d55, #ffb020, #39ff88, #2de2ff, #7c8cff, #ff2d55);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rgb-flow 6s linear infinite;
+  }
+
+  .rgb-border {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .rgb-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(120deg, #ff2d55, #39ff88, #2de2ff, #ff2d55);
+    background-size: 300% 300%;
+    animation: rgb-flow 5s linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .glass {
+    background: rgba(16, 19, 27, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-ink-700 bg-ink-900 px-4 py-3 text-ink-100 placeholder:text-ink-500 transition focus:border-neon-blue focus:outline-none focus:ring-2 focus:ring-neon-blue/30;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-neon-blue px-5 py-3 font-bold text-ink-950 transition hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-ink-700 bg-ink-850/60 px-5 py-3 font-semibold text-ink-100 transition hover:border-neon-blue/60 hover:text-neon-blue active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
